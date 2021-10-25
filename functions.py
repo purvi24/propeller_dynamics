@@ -17,11 +17,11 @@ def filter(pdb):
 def state(arr):
     for i in arr:
         temp = ""
-        if float(i[3]) > 50.2:
-            temp += "Right"
-        elif float(i[3]) < 23.2:
-            temp += "Left"
-        elif float(i[1]) >= 31.2 and float(i[1]) < 43.2 and float(i[2]) >= 29.5 and float(i[2]) < 41.5 and float(i[3]) >= 23.2 and float(i[3]) < 50.2:
+        if float(i[3]) > z_max:
+            temp += "Bottom"
+        elif float(i[3]) < z_min:
+            temp += "Top"
+        elif float(i[1]) >= x_min and float(i[1]) < x_max and float(i[2]) >= y_min and float(i[2]) < y_max and float(i[3]) >= z_min and float(i[3]) < z_max:
             temp += "Centre"
         else:
             temp += "Intermediate"
@@ -81,7 +81,7 @@ def through(arr):
         for j in range(1,len(arr[i])-2):
             temp=arr[i]
             #print(temp[j])
-            if 'Left' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Right' in temp[j+2][0][1]:
+            if 'Top' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Bottom' in temp[j+2][0][1]:
                 #through.append(arr[i])
                 time_through.append([arr[i][0], temp[j][0], temp[j+1][0], temp[j+2][0]])
             else:
@@ -98,7 +98,7 @@ def reverse_through(arr):
         for j in range(1,len(arr[i])-2):
             temp=arr[i]
             #print(temp[j])
-            if 'Right' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Left' in temp[j+2][0][1]:
+            if 'Bottom' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Top' in temp[j+2][0][1]:
                 #through.append(arr[i])
                 time_through.append([arr[i][0], temp[j][0], temp[j+1][0], temp[j+2][0]])
             else:
@@ -114,7 +114,7 @@ def bounce(arr):
         for j in range(1,len(arr[i])-2):
             temp=arr[i]
             #print(temp[j])
-            if 'Left' in arr[i][j][0][1] and 'Centre' in arr[i][j+1][0][1] and 'Left' in arr[i][j+2][0][1]:
+            if 'Top' in arr[i][j][0][1] and 'Centre' in arr[i][j+1][0][1] and 'Top' in arr[i][j+2][0][1]:
                 bounce.append(arr[i])
             else:
                 continue
@@ -129,13 +129,13 @@ def through2(arr):
         for j in range(1,len(arr[i])-3):
             temp=arr[i]
             #print(temp[j])
-            if 'Left' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Intermediate' in temp[j+2][0][1] \
-                    and 'Right' in temp[j+3][0][1]:
+            if 'Top' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Intermediate' in temp[j+2][0][1] \
+                    and 'Bottom' in temp[j+3][0][1]:
                 through.append(arr[i])
             else:
                 continue
-            if 'Right' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Intermediate' in temp[j+2][0][1] \
-                    and 'Left' in temp[j+3][0][1]:
+            if 'Bottom' in temp[j][0][1] and 'Centre' in temp[j+1][0][1] and 'Intermediate' in temp[j+2][0][1] \
+                    and 'Top' in temp[j+3][0][1]:
                 through.append(arr[i])
             else:
                 continue
