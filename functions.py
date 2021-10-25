@@ -14,6 +14,7 @@ def filter(pdb):
     return temp
 
 #assign temporary positions to the water molecules based on their coordinates
+#x_min, x_max, y_min, y_max, z_min and z_max are the values defining the pore when considered as a rectangular region. 
 def state(arr):
     for i in arr:
         temp = ""
